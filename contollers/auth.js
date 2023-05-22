@@ -1,3 +1,8 @@
-exports.getUsers = (req, res, next) => {
-    res.send('hello world');
+exports.register = async(req, res) => {
+    res.send('register user');
+}
+
+//login user
+exports.login = async(req, res) => {
+    res.send('login user user');
 }
