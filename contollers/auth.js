@@ -9,7 +9,7 @@ exports.register = async(req, res) => {
     const token = await user.createToken();
 
 
-    res.status(StatusCodes.CREATED).json(token);
+    res.status(StatusCodes.CREATED).json({ username: user.name, token });
 }
 
 //login user

@@ -30,9 +30,9 @@ userSchema.pre('save', async function() {
 });
 //instanceMethod for creating jsonweb token
 userSchema.methods.createToken = function getname() {
-    const secretKey = "holaloha";
+    const secretKey = process.env.JWT_SECRET;
     const payload = { userId: this._id, username: this.name };
-    return jwt.sign(payload, secretKey, { expiresIn: '1d' });
+    return jwt.sign(payload, secretKey, { expiresIn: process.env.JWT_LIFETIME });
 }
 
 module.exports = mongoose.model('User', userSchema);
