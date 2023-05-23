@@ -1,5 +1,11 @@
+const { StatusCodes } = require('http-status-codes');
+const { BadRequest } = require('../errors');
+const bcrypt = require('bcryptjs');
+const User = require('../models/user');
 exports.register = async(req, res) => {
-    res.send('register user');
+    //password hashing is handled in user model 
+    const user = await User.create({...req.body });
+    res.status(StatusCodes.CREATED).json({ user });
 }
 
 //login user

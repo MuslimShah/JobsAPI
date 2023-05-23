@@ -30,6 +30,7 @@ app.use(errorHandler);
 
 const start = async() => {
     //db connection code
+    console.log('initializing connection...');
     await connectDb(process.env.MONGO_URI);
     //listening on server
     app.listen(PORT, () => console.log(`CONNECTED ON PORT ${PORT}`))
