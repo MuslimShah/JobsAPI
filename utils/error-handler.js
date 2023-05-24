@@ -8,6 +8,6 @@ const errorHandler = (err, req, res, next) => {
         return res.status(err.statusCode).json({ msg: err.message });
     }
     console.error(err.stack)
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: 'oops! something broke', E: err.error })
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: 'oops! something broke', err })
 };
 module.exports = errorHandler;

@@ -24,15 +24,21 @@ const userSchema = new mongoose.Schema({
 
 });
 //validation ==>hasing password
-userSchema.pre('save', async function() {
+userSchema.pre('save', async function(next) {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
+    next()
 });
 //instanceMethod for creating jsonweb token
 userSchema.methods.createToken = function getname() {
     const secretKey = process.env.JWT_SECRET;
     const payload = { userId: this._id, username: this.name };
     return jwt.sign(payload, secretKey, { expiresIn: process.env.JWT_LIFETIME });
+}
+userSchema.methods.comparePassword = async function(candidatePassword) {
+    const isMatched = await bcrypt.compare(candidatePassword, this.password);
+    console.log('candidate password=', candidatePassword);
+    return isMatched;
 }
 
 module.exports = mongoose.model('User', userSchema);
