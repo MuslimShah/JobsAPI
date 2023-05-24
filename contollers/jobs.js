@@ -9,7 +9,7 @@ exports.getJob = async(req, res) => {
 
 //create job
 exports.createJob = async(req, res) => {
-    res.send('create job');
+    res.json({ user: req.user });
 }
 
 //update job

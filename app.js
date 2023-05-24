@@ -4,9 +4,11 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+
 //middlewares
 const pageNotFound = require('./utils/page-not-found');
 const errorHandler = require('./utils/error-handler');
+const authenticateUser = require('./utils/auth');
 //CONNECT DB
 const connectDb = require('./database/database');
 
@@ -16,11 +18,12 @@ const jobsRoutes = require('./routes/jobs');
 
 // app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+// app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'views');
 
 //routes goes here
 app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1/jobs', jobsRoutes)
+app.use('/api/v1/jobs', authenticateUser, jobsRoutes)
 
 //page not found middleware
 app.use(pageNotFound);
