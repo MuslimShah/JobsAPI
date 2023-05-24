@@ -7,6 +7,11 @@ const jobsSchema = new Schema({
         required: [true, 'provide company name'],
         maxlength: 50
     },
+    position: {
+        type: String,
+        required: [true, 'provide position'],
+        maxlength: 55
+    },
     status: {
         type: String,
         enum: ['interview', 'declined', 'pending'],

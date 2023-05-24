@@ -4,22 +4,23 @@ const { resouceNotFound } = require('../errors')
 
 //get all jobs
 exports.getAllJobs = async(req, res) => {
-        const allJobs = await Jobs.find({ createdBy: req.user.id });
-        if (allJobs.length > 0) {
-            return res.status(StatusCodes.OK).json(allJobs)
+        const allJobs = await Jobs.find({ createdBy: req.user.id }).sort('createdAt');
+        if (allJobs.length === 0) {
+            throw new resouceNotFound(`oops! no job found`)
         }
-        res.status(StatusCodes.NOT_FOUND).json({ msg: 'jobs not found' });
+
+        res.status(StatusCodes.OK).json({ jobs: allJobs, count: allJobs.length })
 
 
     }
     //get single job
 exports.getJob = async(req, res) => {
     const jobId = req.params.id;
-    const singleJob = await Jobs.find({ _id: jobId, createdBy: req.user.id });
-    if (singleJob.length > 0) {
-        return res.status(StatusCodes.OK).json(singleJob)
+    const singleJob = await Jobs.findOne({ _id: jobId, createdBy: req.user.id });
+    if (!singleJob) {
+        throw new resouceNotFound(`oops! no job found  with id:${jobId} `)
     }
-    res.status(StatusCodes.NOT_FOUND).json({ msg: 'job not found' })
+    res.status(StatusCodes.OK).json(singleJob)
 
 
 }
@@ -34,7 +35,17 @@ exports.createJob = async(req, res) => {
 
 //update job
 exports.updateJob = async(req, res) => {
-    res.send('all jobs');
+    //extracting userid and jobid from the request object
+    const { user: { id: userId }, params: { id: jobId } } = req;
+    const job = await Jobs.findOne({ _id: jobId, createdBy: userId });
+    if (!job) {
+        throw new resouceNotFound(`oops! no job found  with id:${jobId} `)
+    }
+    job.company = req.body.company;
+    job.position = req.body.position;
+    job.save();
+    res.status(StatusCodes.OK).json({ msg: 'job updated successfully' })
+
 }
 
 //delete job
