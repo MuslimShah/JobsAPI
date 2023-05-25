@@ -1,7 +1,7 @@
 {
-    "name": "express-blueprint",
+    "name": "JobsApi",
     "version": "1.0.0",
-    "description": "express starter template",
+    "description": "JobsApi for storing retriving updating and deleting jobs",
     "main": "app.js",
     "dependencies": {
         "bcryptjs": "^2.4.3",
@@ -23,15 +23,8 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/muslimshah/express-starter-template.git"
+        "url": "git+https://github.com/muslimshah/JobsApi.git"
     },
-    "keywords": [
-        "express-starter-template"
-    ],
     "author": "Muslim Shah",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/muslimshah/express-starter-template/issues"
-    },
-    "homepage": "https://github.com/muslimshah/express-starter-template#readme"
+    "license": "ISC"
 }
