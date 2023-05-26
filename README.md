@@ -151,10 +151,10 @@
         <li>MongoDB: A NoSQL database for storing user and job data.</li>
         <li>Mongoose: An Object Data Modeling (ODM) library for MongoDB to provide a more intuitive interface for interacting with the database.</li>
       </ul>
-      <h1>Use MY Deployed version</h1>
+      <h1>Use My Deployed version</h1>
       <h2>URL</h2>
       <pre><code>https://nice-lime-cockatoo-wig.cyclic.app</code></pre>
       <p>Just include before your endpoint</p>
-      <h1>EXAMPLE</h1>
+      <h1>Example:</h1>
       <pre><code>https://nice-lime-cockatoo-wig.cyclic.app/api/v1/jobs</code></pre>
 </body>
