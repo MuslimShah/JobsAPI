@@ -3,7 +3,6 @@
  * Description: This API allows users to register, create, update, and delete jobs.
  * Author: Muslim Shah
  * Date: May 25, 2023
- *
  * Routes:
  * - /api/v1/auth
  *   - POST /register
